@@ -1,8 +1,7 @@
 ---
-title: c++17使用std::variant
+title: std::variant简单用法
 tags: [variant]
 category: c++
-description: std::variant简单用法
 ---
 
 std::variant和std::any算是兄弟关系，和std::any一样，也是c++17引入标准库的，和Union类似，下面是使用的例子：

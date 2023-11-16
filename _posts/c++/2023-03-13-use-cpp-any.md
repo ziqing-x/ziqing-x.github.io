@@ -1,8 +1,7 @@
 ---
-title: c++17使用std::any
+title: std::any简单用法
 tags: [any]
 category: c++
-description: std::any简单用法
 ---
 
 std::any是c++17引入标准库的，用来存放任意类型;

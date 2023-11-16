@@ -1,8 +1,7 @@
 ---
-title: 怎么制作一个banner
+title: 使用figlet制作banner
 tags: [banner]
 category: other
-description: 使用figlet制作banner
 ---
 
 ```bash

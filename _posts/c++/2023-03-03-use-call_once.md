@@ -1,8 +1,7 @@
 ---
-title: std::call_once使用
+title: std::call_once简单用法示例
 tags: [call_once]
 category: c++
-description: std::call_once简单用法示例
 ---
 
 ## 前言
