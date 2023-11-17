@@ -5,7 +5,7 @@ category: c++
 ---
 
 ## 一、简介
-自旋锁的介绍在前面的文章中已详细介绍过，这里就不重复介绍了。[传送门](./2023-10-16-cpp-atomic_flag.md)
+自旋锁的介绍在前面的文章中已详细介绍过，这里就不重复介绍了。[传送门](https://github.com/ziqing-x/ziqing-x.github.io/_posts/c++/2023-10-16-cpp-atomic_flag.md)
 
 ## 二、例子
 ```c++
