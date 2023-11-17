@@ -1,7 +1,8 @@
 ---
 title: 自己实现一个any
 tags: [any]
-category: c++ 
+category: c++
+date: 2023-03-17 16:00:00 +0800
 ---
 
 最进工作中需要在arm架构设备上实现一个告警数据中心，代码实现过程中需要用到std::any，可是std::any是c++17才加入标准库的，只好自己实现一个(参考[llvm](https://github.com/llvm-mirror/llvm/blob/master/include/llvm/ADT/Any.h)里的设计思想)，话不多说，上代码：

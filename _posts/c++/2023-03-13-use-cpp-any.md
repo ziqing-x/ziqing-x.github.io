@@ -2,10 +2,13 @@
 title: std::any简单用法
 tags: [any]
 category: c++
+date: 2023-03-13 16:00:00 +0800
 ---
 
-std::any是c++17引入标准库的，用来存放任意类型;
+## 一、概念
+std::any是C++17中引入的一个类模板，它允许存储和检索任意类型的值，提供了一种类型安全的、动态的值存储和访问机制。
 
+## 二、例子
 ```c++
 #include <iostream>
 #include <any>

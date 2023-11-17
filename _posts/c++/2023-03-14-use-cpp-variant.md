@@ -2,6 +2,7 @@
 title: std::variant简单用法
 tags: [variant]
 category: c++
+date: 2023-03-14 16:00:00 +0800
 ---
 
 std::variant和std::any算是兄弟关系，和std::any一样，也是c++17引入标准库的，和Union类似，下面是使用的例子：
