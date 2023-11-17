@@ -7,5 +7,3 @@ layout: post
 ---
 
 ### rust
-
-[The-Rust-Programming-Language](../../_srcs/The-Rust-Programming-Language.pdf)
