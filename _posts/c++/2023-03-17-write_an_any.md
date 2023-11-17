@@ -5,7 +5,7 @@ category: c++
 ---
 
 ## 一、简介
-最近的业务中需要用到 std::any，但编译器版本又太低，于是自己实现了一个(参考[llvm](https://github.com/llvm-mirror/llvm/blob/master/include/llvm/ADT/Any.h)里的实现)，用法参见std::any的用法，前面有介绍过, [传送门](https://github.com/ziqing-x/ziqing-x.github.io/_posts/c++/2023-03-13-cpp-any.md)。
+最近的业务中需要用到 std::any，但编译器版本又太低，于是自己实现了一个(参考[llvm](https://github.com/llvm-mirror/llvm/blob/master/include/llvm/ADT/Any.h)里的实现)，用法参见std::any的用法，前面有介绍过, [传送门]({{ site.url }}/_posts/c++/2023-03-13-cpp-any.md)。
 
 ## 二、例子
 
