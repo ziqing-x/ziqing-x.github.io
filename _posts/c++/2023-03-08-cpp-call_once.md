@@ -1,15 +1,13 @@
 ---
-title: std::call_once简单用法示例
+title: std::call_once 简单用法
 tags: [call_once]
 category: c++
-date: 2023-03-03 16:00:00 +0800
 ---
 
-## 一、用途
+## 一、简介
 在c++中有这么一个需求， 多个线程同时调用同一个函数，为确保函数或者代码片段只被调用一次，代码应该如何实现？ std::call_once，能很好的解决这个问题。
 
 ## 二、例子
-
 ```c++
 #include <iostream>
 #include <mutex>

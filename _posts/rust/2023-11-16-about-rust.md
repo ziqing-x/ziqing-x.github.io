@@ -1,9 +1,10 @@
 ---
-title: rust有什么优点和缺点？
-tags: [other]
+title: rust相关书籍
+tags: [rust资料]
 category: rust
-date: 2023-11-15 19:00:00 +0800
-layout: post
 ---
 
-### rust
+## Rust 学习必备网站
++ [rust圣经](https://course.rs/about-book.html)
++ [通过例子学习rust](https://rustwiki.org/zh-CN/rust-by-example/)
++ [rust官方教程](https://doc.rust-lang.org/book/)
