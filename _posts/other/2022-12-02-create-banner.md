@@ -2,6 +2,8 @@
 title: 使用 figlet 制作 banner
 tags: [banner]
 category: other
+image:
+    path: /assets/img/headers/figlet.webp
 ---
 
 ## 一、简介
