@@ -2,29 +2,38 @@
 title: 采用 std::atomic_flag 实现自旋锁
 tags: [自旋锁]
 category: c++
+image:
+    path: /assets/img/headers/atomic_flag.webp
 ---
 
-## 一、简介
+std::atomic_flag 是 c++ 标准库中的原子标志类，用于实现基本的原子操作。它提供了一种简单的机制来保护共享资源，可以用于实现自旋锁和其他线程同步的机制。std::atomic_flag 只能表示两个状态：设置（set）和清除（clear），并且保证对它的操作是原子的，避免了数据竞争和并发访问的问题。
+
+## 什么是自旋锁
+
 + 自旋锁属于 busy-waiting 类型锁，它避免了操作系统进程调度和线程切换开销(用户进程和内核切换的消耗)，通常适用在时间极短的情况，所以如果一个线程持有锁的时间比较短，那么就可以使用自旋锁; 操作系统的内核经常使用自旋锁。
 + 但如果长时间上锁，自旋锁会非常耗费性能。线程持有锁时间越长，则持有锁的线程被 OS调度程序中断的风险越大，如果发生中断情况，那么其它线程将保持旋转状态(反复尝试获取锁)，而持有锁的线程并不打算释放锁，导致的结果是无限期推迟，直到持有锁的线程可以完成并释放它为止。
 + 持有自旋锁的线程在sleep之前应该释放自旋锁以便其他线程可以获得该自旋锁。实际上许多其他类型的锁在底层使用了自旋锁实现，例如多数互斥锁在试图获取锁的时候会先自旋一小段时间，然后才会休眠。如果在持锁时间很长的场景下使用自旋锁，则会导致CPU在这个线程的时间片用尽之前一直消耗在无意义的忙等上，造成计算资源的浪费。
 
-## 二、例子
+## 自旋锁代码实现
+
 ```c++
 #include <atomic>
 
-class SpinLock {
+class SpinLock
+{
 private:
   std::atomic_flag flag_;
 
 public:
   SpinLock() : flag_(ATOMIC_FLAG_INIT) {}
   ~SpinLock() = default;
-  void lock() {
+  void lock()
+  {
     // 获得锁 (test_and_set为设置当前lock为true，并返回lock设置之前的值)
     while (flag_.test_and_set(std::memory_order_acquire));
   }
-  void unlock() {
+  void unlock()
+  {
     // 释放锁 (clear为设置lock的值为false)
     flag_.clear(std::memory_order_release);
   }
@@ -35,19 +44,24 @@ public:
 
 SpinLock slck;
 
-int main() {
-  std::thread t1([&]() {
-    while (true) {
+int main()
+{
+  std::thread t1([&]()
+  {
+    while (true)
+    {
       slck.lock();
-      std::cout << "线程1持有锁\n";
+      std::cout << "线程1持有锁" << std::endl;
       slck.unlock();
     }
   });
 
-  std::thread t2([&]() {
-    while (true) {
+  std::thread t2([&]()
+  {
+    while (true)
+    {
       slck.lock();
-      std::cout << "线程2持有锁\n";
+      std::cout << "线程2持有锁" << std::endl;
       slck.unlock();
     }
   });

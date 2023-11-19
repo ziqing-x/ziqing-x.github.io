@@ -2,12 +2,14 @@
 title: std::call_once 简单用法
 tags: [call_once]
 category: c++
+image:
+    path: /assets/img/headers/call_once.webp
 ---
 
-## 一、简介
-在c++中有这么一个需求， 多个线程同时调用同一个函数，为确保函数或者代码片段只被调用一次，代码应该如何实现？ std::call_once，能很好的解决这个问题。
+std::call_once 是一个 c++11 标准库函数，用于保证多线程环境下某个函数只被调用一次。
 
-## 二、例子
+## 示例
+
 ```c++
 #include <iostream>
 #include <mutex>

@@ -2,10 +2,14 @@
 title: std::condition_variable 简单用法
 tags: [条件锁]
 category: c++
+image:
+    path: /assets/img/headers/condition_variable.webp
 ---
 
-## 一、简介
-std::condition_variable 是一个条件变量，常用于以下场景，某一个线程因为某个条件未满足时可以使用条件变量使该线程处于阻塞状态，一旦条件满足，被阻塞的线程可以被唤醒继续运行；条件变量只能与互斥锁配合使用，常用的成员函数如下：
+std::condition_variable 是 c++ 标准库中的条件变量，用于实现线程间的同步与通信。它可以与 std::mutex 配合使用，通过等待和通知的机制，实现线程的阻塞和唤醒操作，使线程能够在特定条件满足时进行等待，或者在条件变量发生变化时进行通知，从而实现线程间的协调与同步。
+
+## 常用成员函数
+
 ```c++
 wait(); // 阻塞当前线程直到条件满足被唤醒
 wait_for(); // 阻塞当前线程，直到唤醒条件变量或在指定的超时时间之后
@@ -14,7 +18,8 @@ notify_one(); // 通知一个正在等待的线程
 notify_all(); // 通知所有正在等待的线程
 ```
 
-## 二、例子
+## 示例
+
 ```c++
 #include <iostream>
 #include <thread>
@@ -24,7 +29,8 @@ notify_all(); // 通知所有正在等待的线程
 std::mutex mtx;
 std::condition_variable cv;
 
-void func() {
+void func()
+{
     std::unique_lock<std::mutex> ulck(mtx);
     std::cout << "子线程等待中..." << std::endl;
 #if 1 // 一直阻塞等待
@@ -37,7 +43,8 @@ void func() {
     std::cout << "子线程等待结束" << std::endl;
 }
 
-int main() {
+int main()
+{
     std::cout << "创建子线程" << std::endl;
     std::thread t(func);
     std::this_thread::sleep_for(std::chrono::seconds(3));

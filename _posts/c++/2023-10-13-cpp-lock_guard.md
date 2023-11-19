@@ -2,39 +2,48 @@
 title: std::lock_guard 简单用法
 tags: [互斥锁]
 category: c++
+image:
+    path: /assets/img/headers/lock_guard.webp
 ---
 
-## 一、简介
-你有没有遇到过这样一个问题, 有时候在使用 std::mutex 的过程中, 在函数最后 unlock ，但是由于函数中有太多条件判断，有时候函数中途 return 导致 unlock 没有被调到。std::lock_guard 就可以完美解决这个问题，通过函数的构造函数 lock，在析构的时候通过析构函数 unlock 。
+std::lock_guard 是 c++ 标准库中的 RAII 类模板，用于在作用域内自动管理互斥量的上锁和解锁操作，确保在离开作用域时正确释放互斥量，避免忘记解锁而导致的死锁问题。
 
-## 二、例子
+## 示例
+
 ```c++
 #include <mutex>
 #include <iostream>
 
 std::mutex mtx;
 
-// 使用 lock_guard 前
-// void test_lock() {
-//     mtx.lock();
-//     if (true) {
-//         std::cout << "exit \n";
-//         mtx.unlock();
-//         return;
-//     }
-//     mtx.unlock();
-// }
+// 使用 lock_guard 前 unlock无法被调用
+# if 0
+void test_lock()
+{
+    mtx.lock();
+    if (true)
+    {
+        std::cout << "exit \n";
+        mtx.unlock();
+        return;
+    }
+    mtx.unlock();
+}
+#endif
 
 // 使用 lock_guard 后不用担心 未 unlock 的问题
-void test_lock() {
+void test_lock()
+{
     std::lock_guard<std::mutex> glck(mtx);
-    if (true) {
-        std::cout << "exit \n";
+    if (true)
+    {
+        std::cout << "exit" << std::endl;
         return;
     }
 }
 
-int main() {
+int main()
+{
     test_lock();
     return 0;
 }

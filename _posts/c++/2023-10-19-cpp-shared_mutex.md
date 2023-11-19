@@ -2,12 +2,14 @@
 title: 使用 c++ 的条件变量实现一个共享锁
 tags: [共享锁]
 category: c++
+image:
+    path: /assets/img/headers/shared_mutex.webp
 ---
 
-## 一、简介
-读写锁又叫多读单写锁 (multi-reader single-writer lock)，所有线程可以同时读，但是只有一个线程可以单独写。
+共享锁又叫多读单写锁 (multi-reader single-writer lock)，在多读少写的场景中非常有用，可以有效地避免读写冲突和竞争条件，提高程序的效率和可靠性。
 
-## 二、例子
+## 示例
+
 ```c++
 #include <condition_variable>
 #include <mutex>

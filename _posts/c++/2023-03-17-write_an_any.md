@@ -2,12 +2,13 @@
 title: 自己实现一个 any
 tags: [any]
 category: c++
+image:
+    path: /assets/img/headers/my_any.webp
 ---
 
-## 一、简介
-最近的业务中需要用到 std::any，但编译器版本又太低，于是自己实现了一个(参考[llvm](https://github.com/llvm-mirror/llvm/blob/master/include/llvm/ADT/Any.h)里的实现)，用法参见std::any的用法，前面有介绍过, [传送门]({{ site.url }}/_posts/c++/2023-03-13-cpp-any.md)。
+最近的业务中需要用到 std::any，但编译器版本又太低，于是自己实现了一个(参考 [llvm](https://github.com/llvm-mirror/llvm/blob/master/include/llvm/ADT/Any.h))，用法参见std::any的用法，前面有介绍过。
 
-## 二、例子
+## 代码实现
 
 ```c++
 #include "make_unique.h"

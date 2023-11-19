@@ -2,12 +2,14 @@
 title: std::variant 简单用法
 tags: [variant]
 category: c++
+image:
+    path: /assets/img/headers/variant.webp
 ---
 
-## 一、简介
-std::variant 和std::any 算是兄弟关系，和 std::any 一样，也是c++17引入标准库的，和 union 类似。
+std::variant 是 c++17 引入的标准库类，它提供了一种类型安全的机制，可以在编译时定义一个可以存储多种类型的变量。通过std::variant，我们可以在运行时将值存储在一个可变的、类型安全的容器中，并在需要时进行类型转换和访问，从而实现更灵活的编程。和 union 类似。
 
-## 二、例子
+## 示例
+
 ```c++
 #include <iostream>
 #include <variant>

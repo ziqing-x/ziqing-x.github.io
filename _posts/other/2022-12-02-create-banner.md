@@ -6,13 +6,15 @@ image:
     path: /assets/img/headers/figlet.webp
 ---
 
-## 一、简介
-linux 下使用很多工具时，在执行命令的时候都能输出一个漂亮的banner，如果你也想自己制作一些漂亮的banner，赶紧用 figlet 试试。
+figlet 是一个用于生成艺术字体的命令行工具，可以将普通文本转换成由字符组成的大字体。它支持多种字体样式和自定义字符宽度，可用于创建独特的文本艺术效果。figlet 常用于终端显示、标语设计和文本装饰等场景。
 
-## 二、例子
+## 示例
+
 ```bash
-showfigfonts               > 列出所有banner字体
-figlet -f bubble TPTINC    > 生成bubble字体的banner
+# 列出所有风格
+showfigfonts
+# 生成 bubble 风格的艺术字
+figlet -f bubble TPTINC
 
     _   _   _   _   _   _  
    / \ / \ / \ / \ / \ / \ 

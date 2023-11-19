@@ -1,13 +1,15 @@
 ---
 title: 什么是组合?
-tags: [类图]
+tags: [UML]
 category: c++
+image:
+    path: /assets/img/headers/uml.webp
 ---
 
-## 一、简介
-如果一个或多个类的实例化对象是另一个类的成员，这种结构称为组合，组合是一种强关联关系，这些组合的类生命周期一样。
+在UML中，组合是一种关系，表示一个对象包含另一个对象，并且两者的生命周期是紧密相关的。
 
-## 二、例子
+## 示例
+
 ```c++
 #include <iostream>
 
