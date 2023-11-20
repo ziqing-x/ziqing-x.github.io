@@ -18,20 +18,21 @@ image:
 template<class T>
 class Singleton
 {
+protected:
+    Singleton() = default;
+    ~Singleton() = default;
+
 public:
+
+    Singleton(const Singleton &) = delete;
+    Singleton &operator=(const Singleton &) = delete;
+
     template<typename... Args>
     static T &instance(Args &&...args)
     {
         static T Singleton(std::forward<Args>(args)...);
         return instance;
     }
-
-    Singleton(const Singleton &) = delete;
-    Singleton &operator=(const Singleton &) = delete;
-
-protected:
-    Singleton() = default;
-    ~Singleton() = default;
 };
 
 ////////////////////////////////////////////////////////////////////
@@ -69,6 +70,14 @@ int main()
 template<class T>
 class Singleton
 {
+protected:
+    static std::unique_ptr<T> instance_;
+    static std::once_flag flag_; // 保证多线程调用时只make_unique一次
+
+protected:
+    Singleton() = default;
+    ~Singleton() = default;
+
 public:
     template<typename... Args>
     static std::unique_ptr<T> &instance(Args &&...args)
@@ -82,14 +91,6 @@ public:
 
     Singleton(const Singleton &) = delete;
     Singleton &operator=(const Singleton &) = delete;
-
-protected:
-    Singleton() = default;
-    ~Singleton() = default;
-
-protected:
-    static std::unique_ptr<T> instance_;
-    static std::once_flag flag_; // 保证多线程调用时只make_unique一次
 };
 
 template<class T>

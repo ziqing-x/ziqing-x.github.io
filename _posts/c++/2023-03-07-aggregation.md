@@ -15,6 +15,9 @@ image:
 
 class Network
 {
+private:
+    Network *network_; // 指针成员
+
 public:
     void connect()
     {
@@ -32,9 +35,6 @@ public:
         std::cout << "Runnig" << std::endl;
         delete network_;
     }
-
-private:
-    Network *network_; // 对象成员
 };
 
 int main()

@@ -16,6 +16,12 @@ image:
 
 class SharedMutex
 {
+private:
+    int shared_num_{0};
+    int exclusive_num_{0};
+    std::mutex mutex_;
+    std::condition_variable cv_;
+
 public:
     SharedMutex() = default;
     SharedMutex(const SharedMutex &) = delete;
@@ -49,17 +55,14 @@ public:
         exclusive_num_ = 0;
         cv_.notify_all();
     }
-
-private:
-    int shared_num_{0};
-    int exclusive_num_{0};
-    std::mutex mutex_;
-    std::condition_variable cv_;
 };
 
 template<typename T>
 class ReadLock
 {
+private:
+    T &mutex_;
+
 public:
     explicit ReadLock(T &mutex)
         : mutex_(mutex)
@@ -72,14 +75,14 @@ public:
     {
         mutex_.read_unlock();
     }
-
-private:
-    T &mutex_;
 };
 
 template<typename T>
 class WriteLock
 {
+private:
+    T &mutex_;
+
 public:
     explicit WriteLock(T &mutex)
         : mutex_(mutex)
@@ -92,9 +95,6 @@ public:
     {
         mutex_.write_unlock();
     }
-
-private:
-    T &mutex_;
 };
 
 

@@ -19,6 +19,18 @@ image:
 class Any
 {
 private:
+    template<class T>
+    friend T &any_cast(Any &Value);
+    template<class T>
+    friend T &any_cast(Any &&Value);
+    template<class T>
+    friend bool is_type(Any &value);
+    template<class T>
+    friend bool is_type(Any &&value);
+    std::unique_ptr<HoldBase> holdbase_;
+    std::type_index type_index_;
+
+private:
     struct HoldBase
     {
         virtual ~HoldBase() = default;
@@ -28,6 +40,14 @@ private:
     template<typename T>
     struct Hold : public HoldBase
     {
+    private:
+        Hold &operator=(const Hold &other) = delete;
+        Hold(const Hold &other) = delete;
+
+    public:
+        T value_;
+
+    public:
         Hold(const T &value)
             : value_(value)
         {}
@@ -38,11 +58,6 @@ private:
         {
             return std::make_unique<Hold<T>>(value_);
         }
-        T value_;
-
-    private:
-        Hold &operator=(const Hold &other) = delete;
-        Hold(const Hold &other) = delete;
     };
 
 public:
@@ -115,18 +130,6 @@ private:
         auto hold = dynamic_cast<Hold<T> *>(holdbase_.get());
         return hold->value_;
     }
-
-private:
-    template<class T>
-    friend T &any_cast(Any &Value);
-    template<class T>
-    friend T &any_cast(Any &&Value);
-    template<class T>
-    friend bool is_type(Any &value);
-    template<class T>
-    friend bool is_type(Any &&value);
-    std::unique_ptr<HoldBase> holdbase_;
-    std::type_index type_index_;
 };
 
 template<class T>

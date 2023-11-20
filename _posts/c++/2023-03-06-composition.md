@@ -15,6 +15,9 @@ image:
 
 class Network
 {
+private:
+    Network network_; // 对象成员
+
 public:
     void connect()
     {
@@ -30,9 +33,6 @@ public:
         network_.connect();
         std::cout << "Runnig" << std::endl;
     }
-
-private:
-    Network network_; // 对象成员
 };
 
 int main()
