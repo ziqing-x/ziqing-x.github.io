@@ -57,23 +57,23 @@ public:
 
 #include <memory>
 
-#define LOG_TOPIC "app"                         // 日志tag
-#define LOG_FILE_NAME "./log/" LOG_TOPIC ".log" // 日志文件名
-#define LOG_FILE_SIZE 1024 * 1024 * 3           // 3MB
-#define LOG_ROTATION 3                          // 日志文件满3个时开始滚动日志
-#define LOG_FLUSH_ON spdlog::level::info        // 当打印这个级别日志时flush
+#define LOG_TOPIC "app"                               // 日志tag
+#define LOG_FILE_NAME "./log/" LOG_TOPIC ".log"       // 日志文件名
+#define LOG_FILE_SIZE 1024 * 1024 * 3                 // 3MB
+#define LOG_ROTATION 3                                // 日志文件满3个时开始滚动日志
+#define PATTERN  "[%Y-%m-%d %H:%M:%S.%f] [%^%L%$] %v" // 日志格式
+#define LOG_FLUSH_ON spdlog::level::info              // 当打印这个级别日志时flush
 
-#define LogE(...) Singleton<Logger>::Instance().log_error(__VA_ARGS__)
-#define LogW(...) Singleton<Logger>::Instance().log_warn(__VA_ARGS__)
-#define LogI(...) Singleton<Logger>::Instance().log_info(__VA_ARGS__)
-#define LogD(...) Singleton<Logger>::Instance().log_debug(__VA_ARGS__)
-#define LogC(...) Singleton<Logger>::Instance().log_critical(__VA_ARGS__)
-
+#define LOGE(...) Singleton<Logger>::Instance().log_error(__VA_ARGS__)
+#define LOGW(...) Singleton<Logger>::Instance().log_warn(__VA_ARGS__)
+#define LOGI(...) Singleton<Logger>::Instance().log_info(__VA_ARGS__)
+#define LOGD(...) Singleton<Logger>::Instance().log_debug(__VA_ARGS__)
+#define LOGC(...) Singleton<Logger>::Instance().log_critical(__VA_ARGS__)
 
 class Logger
 {
 private:
-    std::shared_ptr<spdlog::logger> logger_;
+    std::unique_ptr<spdlog::logger> logger_;
 
 public:
     Logger()
@@ -82,8 +82,8 @@ public:
             auto stdout_sink = std::make_shared<spdlog::sinks::stdout_color_sink_mt>();
             auto rotating_sink = std::make_shared<spdlog::sinks::rotating_file_sink_mt>(LOG_FILE_NAME, LOG_FILE_SIZE, LOG_ROTATION);
             std::vector<spdlog::sink_ptr> sinks{stdout_sink, rotating_sink};
-            logger_ = std::make_shared<spdlog::logger>(LOG_TOPIC, sinks.begin(), sinks.end());
-            logger_->set_pattern("[%Y-%m-%d %H:%M:%S.%f] [%^%L%$] %v");
+            logger_ = std::make_unique<spdlog::logger>(LOG_TOPIC, sinks.begin(), sinks.end());
+            logger_->set_pattern(PATTERN);
             if (is_debug_mode())
             {
                 logger_->set_level(spdlog::level::debug);
