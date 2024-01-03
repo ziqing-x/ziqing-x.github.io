@@ -24,10 +24,11 @@ concurrency:
 
 jobs:
   build:
-  runs-on: ubuntu-latest
-  steps:
-    -name: It is nothing
-    run: echo "Running"
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: It is nothing
+        run: echo "Running"
 
 # jobs:
 #   build:
