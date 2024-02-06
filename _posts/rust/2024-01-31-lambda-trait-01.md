@@ -152,10 +152,10 @@ fn main() {
 在使用闭包作为输出参数时， 必须使用 move 关键字，它表明所有的捕获都是通过值进行的。这是必须的，因为在函数退出时，任何通过引用的捕获都被丢弃，在闭包中留下无效的引用。
 
 ```rust
-fn create_fn() -> impl Fn() {
+fn create_fn() -> impl Fn(i32) {
     let text = "Fn".to_owned();
 
-    move || println!("This is a: {}", text)
+    move |x: i32| println!("This is a: {}, {x}", text)
 }
 
 fn create_fnmut() -> impl FnMut() {
@@ -175,7 +175,7 @@ fn main() {
     let mut fn_mut = create_fnmut();
     let fn_once = create_fnonce();
 
-    fn_plain();
+    fn_plain(5);
     fn_mut();
     fn_once();
 }
