@@ -1,9 +1,9 @@
 ---
-title: rust 闭包 Fn、FnMut、FnOnce 的区别
-tags: [lamda, 闭包]
+title: rust 闭包之Fn、FnMut、FnOnce 的区别
+tags: [lamda, closure, 闭包]
 category: rust
 image:
-    path: /assets/img/headers/lambda.webp
+    path: /assets/img/headers/closure.webp
 ---
 
 在 rust 中，Fn、FnMut 和 FnOnce 是三种闭包（closure）类型，它们定义了闭包如何捕获外部环境中的变量，通常情况下，编译器会自动推断闭包的类型，但是当使用闭包作为参数时，需要显示指定闭包的类型。
@@ -22,6 +22,8 @@ fn main() {
     assert!(equal_to_x(y));
 }
 ```
+在上面的代码中，由于闭包里没有改变捕获的参数的值或者所有权，所以闭包的类型会被自动推断为 Fn。
+
 ### 2、传参用法
 ```rust
 fn function<F>(f: F) -> i32
@@ -40,6 +42,8 @@ fn main() {
 }
 
 ```
+在上面的代码中，使用闭包作为参数传递时，需增加闭包类型的约束，显示的指出闭包的类型。
+
 ## FnMut 用法示例
 ### 1、普通用法
 
@@ -55,6 +59,9 @@ fn main() {
     increment_x(); // 再次调用闭包，x 变为 12
 }
 ```
+在上面的代码中，由于闭包里改变了捕获的参数的值，所以闭包的类型会被自动推断为 FnMut。
+
+
 ### 2、传参用法
 ```rust
 fn function<F>(mut f: F)
@@ -70,6 +77,9 @@ fn main() {
     println!("{x}");
 }
 ```
+在上面的代码中，显示的指出了闭包的类型为 FnMut。
+
+
 ## FnOnce 用法示例
 ### 1、普通用法
 
@@ -87,6 +97,9 @@ fn main() {
     // consume(); // 再次调用闭包会报错，因为 x 的所有权已经被移走
 }
 ```
+在上面的代码中，由于闭包里改变了捕获的参数的所有权，所以闭包的类型会被自动推断为 FnOnce, 且闭包只能调用一次。
+
+
 ### 2、传参用法
 ```rust
 fn function<F>(f: F)
@@ -109,3 +122,4 @@ fn main() {
     // function(consume); // 再次调用闭包会报错，因为 x 的所有权已经被移走
 }
 ```
+在上面的代码中，显示的指出了闭包的类型为 FnOnce。
