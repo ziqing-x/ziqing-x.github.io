@@ -146,3 +146,70 @@ fn main() {
     println!("{}", crate::add(add, add, a, b));
 }
 ```
+
+## 使用闭包作为输出参数
+
+在使用闭包作为输出参数时， 必须使用 move 关键字，它表明所有的捕获都是通过值进行的。这是必须的，因为在函数退出时，任何通过引用的捕获都被丢弃，在闭包中留下无效的引用。
+
+```rust
+fn create_fn() -> impl Fn() {
+    let text = "Fn".to_owned();
+
+    move || println!("This is a: {}", text)
+}
+
+fn create_fnmut() -> impl FnMut() {
+    let text = "FnMut".to_owned();
+
+    move || println!("This is a: {}", text)
+}
+
+fn create_fnonce() -> impl FnOnce() {
+    let text = "FnOnce".to_owned();
+
+    move || println!("This is a: {}", text)
+}
+
+fn main() {
+    let fn_plain = create_fn();
+    let mut fn_mut = create_fnmut();
+    let fn_once = create_fnonce();
+
+    fn_plain();
+    fn_mut();
+    fn_once();
+}
+
+```
+其实当闭包类型是 FnOnce 时，如果闭包函数内没有捕获变量，
+或捕获的变量的所有权都被转移到了闭包里时, move 关键字不是必须的。
+例如
+
+```rust
+fn create_fnonce() -> impl FnOnce() {
+    // 这里没有捕获变量，所以 move 可要可不要
+    || println!("hello")
+}
+
+fn main() {
+    let fn_once = create_fnonce();
+    fn_once();
+}
+```
+或者
+```rust
+fn create_fnonce() -> impl FnOnce() {
+    // str 的所有权转移到了闭包里，所以不需要 move，
+    // 注意： 只要存在一个没有转移所有权到闭包的变量，就必须使用 move
+    let str = "hello".to_owned();
+    || {
+        let tmp = str;
+        println!("{tmp}");
+    }
+}
+
+fn main() {
+    let fn_once = create_fnonce();
+    fn_once();
+}
+```
