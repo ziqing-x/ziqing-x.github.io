@@ -16,7 +16,7 @@ image:
 int main()
 {
     char *p = nullptr;
-    std::shared_ptr<char>(p, [](char *p) {
+    std::shared_ptr<char> sp(p, [](char *p) {
         delete[] p;
     });
 
