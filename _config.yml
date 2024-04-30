@@ -14,9 +14,9 @@ timezone: Asia/Beijing
 # jekyll-seo-tag settings › https://github.com/jekyll/jekyll-seo-tag/blob/master/docs/usage.md
 # ↓ --------------------------
 
-title: 大道至简 # the main title
+title: 昱卿本卿 # the main title
 
-tagline: Avenue to jane !🇨🇳 # it will display as the sub-title
+tagline: Yuqing Benqing 🇨🇳 # it will display as the sub-title
 
 description: >- # used by seo meta and the atom feed
   A minimal, responsive and feature-rich Jekyll theme for technical writing.
