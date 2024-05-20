@@ -14,6 +14,18 @@ image:
 sudo apt-get install network-manager
 ```
 
+## 打开 wifi
+
+```bash
+nmcli radio wifi on
+```
+
+## 关闭 wifi
+
+```bash
+nmcli radio wifi off
+```
+
 ## 查看 wifi 列表
 
 ```bash
