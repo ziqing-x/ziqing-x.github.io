@@ -34,13 +34,15 @@ ip link show
 sudo vim /etc/network/interfaces
 ```
 在文件中找到与你的网络接口相关的部分，或者如果还没有，就添加新的配置。例如，如果你的接口名称是  eth0 ，并且你想要设置的静态IP地址是  192.168.1.100 ，子网掩码是  255.255.255.0 ，默认网关是  192.168.1.1 ，那么你应该这样配置：
-plaintext
+```bash
+
 auto eth0
 iface eth0 inet static
     address 192.168.1.100
     netmask 255.255.255.0
     gateway 192.168.1.1
- 
+ ```
+
 #### 步骤3：重启网络服务 
  
 配置完成后，你需要重启网络服务来应用更改。在 Debian 和 Ubuntu 系统中，可以使用以下命令：
