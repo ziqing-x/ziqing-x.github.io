@@ -16,7 +16,7 @@ timezone: Asia/Beijing
 
 title: 昱卿本卿 # the main title
 
-tagline: Yuqing Benqing 🇨🇳 # it will display as the sub-title
+tagline: Every little helps # it will display as the sub-title
 
 description: >- # used by seo meta and the atom feed
   A minimal, responsive and feature-rich Jekyll theme for technical writing.
