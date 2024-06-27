@@ -45,4 +45,8 @@ nmcli con add con-name WIFI_NAME ifname wlan0 type wifi ssid WIFI_NAME
 nmcli con up WIFI_NAME
 ```
 
+## 断开 wifi
 
+```bash
+nmcli dev disconnect WIFI_NAME
+```
