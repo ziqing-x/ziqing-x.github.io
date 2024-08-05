@@ -1,5 +1,5 @@
 ---
-title: ROS1 开机自启动节点
+title: ROS1 开机自启动节点(不借助 ros-noetic-robot-upstart)
 tags: [ros1]
 category: linux
 image:
