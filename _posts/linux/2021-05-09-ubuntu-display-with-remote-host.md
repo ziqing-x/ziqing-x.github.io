@@ -24,3 +24,13 @@ export DISPLAY=192.168.1.100:0.0
 ## 使用
 
 打开 mobaxterm，使用 ssh 连接到开发板后，在连接上的终端里运行你的应用，此时你的电脑屏幕上就会显示开发板的应用的 UI 了。
+
+## 注意
+
+如果运行你的应用时，出现报错如下： This Application failed to start because no Qt platform plugin could be init......
+
+那么你需要安装 qt5-default 包：
+
+```bash
+sudo apt-get install qt5-default
+```
