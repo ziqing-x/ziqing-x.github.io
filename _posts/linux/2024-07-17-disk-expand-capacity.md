@@ -48,7 +48,28 @@ nvme0n1      259:0    0   477G  0 disk
 ```
 可以看到 nvme0n1 还有 477G 未使用，下面我们准备把这 477G 扩展给根目录。
 
-## 方法一： 使用命令行工具 parted
+## 方法一：使用图形化工具 gparted（极力推荐）
+
++ 安装了 gparted
+
+```bash
+sudo apt update
+sudo apt install gparted
+```
+
++ 运行 gparted
+
+``` bash
+sudo gparted
+```
+
++ 在 gparted 中，你可以看到所有的分区。找到你的根分区（通常是 /dev/nvme0n1p1 或类似名称），然后尝试将未分配的空间扩展到根分区。右键点击根分区，选择 "Resize/Move" ，然后拖动边界来扩展分区，点击 "Resize" 按钮。
+
++ 点击菜单栏的 ✅ 按钮来确认你的更改。
+
++ 重启系统。
+
+## 方法二： 使用命令行工具 parted（慎用，慎用，慎用）
 
 + 打开终端，输入以下命令启动 parted ：
 
@@ -146,27 +167,6 @@ The filesystem on /dev/nvme0n1p1 is now 124826732 (4k) blocks long.
 
 + 重启系统 
 完成上述步骤后，重启计算机，确保一切正常。 
-
-## 方法二：使用图形化工具 gparted
-
-+ 安装了 gparted
-
-```bash
-sudo apt update
-sudo apt install gparted
-```
-
-+ 运行 gparted
-
-``` bash
-sudo gparted
-```
-
-+ 在 gparted 中，你可以看到所有的分区。找到你的根分区（通常是 /dev/nvme0n1p1 或类似名称），然后尝试将未分配的空间扩展到根分区。右键点击根分区，选择 "Resize/Move" ，然后拖动边界来扩展分区，点击 "Resize" 按钮。
-
-+ 点击菜单栏的 ✅ 按钮来确认你的更改。
-
-+ 重启系统。
 
 
 在操作过程中遇到任何问题，可以联系我，免费解答！
