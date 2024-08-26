@@ -1,6 +1,6 @@
 ---
-title: ROS1 开机自启动节点(不借助 ros-noetic-robot-upstart)
-tags: [ros1]
+title: ROS 开机自启动节点(不借助 ros-noetic-robot-upstart)
+tags: [ROS]
 category: linux
 image:
   path: /assets/img/headers/ros1.webp
